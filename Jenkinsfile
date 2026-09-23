@@ -23,7 +23,7 @@ pipeline {
         stage('Build de imagen Docker') {
             steps {
                 echo "Construyendo imagen Docker con el entorno de pruebas..."
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                bat "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
             }
         }
 
@@ -32,9 +32,9 @@ pipeline {
                 echo "Ejecutando pruebas dentro de un contenedor Docker..."
                 // Se monta la carpeta 'reports' para recuperar el resultado
                 // fuera del contenedor una vez terminan las pruebas.
-                sh """
-                    docker run --rm \
-                        -v \$(pwd)/reports:/app/reports \
+                bat """
+                    if not exist reports mkdir reports
+                    docker run --rm -v "%WORKSPACE%\\reports:/app/reports" \
                         ${IMAGE_NAME}:${IMAGE_TAG}
                 """
             }
@@ -50,7 +50,7 @@ pipeline {
         stage('Limpieza') {
             steps {
                 echo "Eliminando imagen temporal..."
-                sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true"
+                bat "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || exit /b 0"
             }
         }
     }

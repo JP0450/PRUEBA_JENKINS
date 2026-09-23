@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="0.29">
-  <testsuite name="Calculadora - pruebas de QA" errors="0" failures="0" skipped="0" timestamp="2026-09-23T18:53:51" time="0.263" tests="6">
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="0.401">
+  <testsuite name="Calculadora - pruebas de QA" errors="0" failures="0" skipped="0" timestamp="2026-09-23T21:54:11" time="0.353" tests="6">
     <testcase classname="Calculadora - pruebas de QA suma dos números correctamente" name="Calculadora - pruebas de QA suma dos números correctamente" time="0.002">
     </testcase>
-    <testcase classname="Calculadora - pruebas de QA resta dos números correctamente" name="Calculadora - pruebas de QA resta dos números correctamente" time="0">
+    <testcase classname="Calculadora - pruebas de QA resta dos números correctamente" name="Calculadora - pruebas de QA resta dos números correctamente" time="0.001">
     </testcase>
     <testcase classname="Calculadora - pruebas de QA multiplica dos números correctamente" name="Calculadora - pruebas de QA multiplica dos números correctamente" time="0">
     </testcase>
     <testcase classname="Calculadora - pruebas de QA divide dos números correctamente" name="Calculadora - pruebas de QA divide dos números correctamente" time="0">
     </testcase>
-    <testcase classname="Calculadora - pruebas de QA lanza error al dividir por cero" name="Calculadora - pruebas de QA lanza error al dividir por cero" time="0.003">
+    <testcase classname="Calculadora - pruebas de QA lanza error al dividir por cero" name="Calculadora - pruebas de QA lanza error al dividir por cero" time="0.004">
     </testcase>
     <testcase classname="Calculadora - pruebas de QA ejemplo de caso límite: suma con negativos" name="Calculadora - pruebas de QA ejemplo de caso límite: suma con negativos" time="0">
     </testcase>
