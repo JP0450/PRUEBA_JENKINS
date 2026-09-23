@@ -30,11 +30,15 @@ pipeline {
         stage('Ejecutar pruebas de QA en Docker') {
             steps {
                 echo "Ejecutando pruebas dentro de un contenedor Docker..."
-                // Se monta la carpeta 'reports' para recuperar el resultado
-                // fuera del contenedor una vez terminan las pruebas.
+                // Se copia el reporte con docker cp para evitar permisos del volumen
+                // compartido entre Docker Desktop y el servicio Jenkins de Windows.
                 bat """
                     if not exist reports mkdir reports
-                    docker run --rm -v "%WORKSPACE%\\reports:/app/reports" ${IMAGE_NAME}:${IMAGE_TAG}
+                    set "TEST_EXIT=0"
+                    docker run --name ${IMAGE_NAME}-${IMAGE_TAG} ${IMAGE_NAME}:${IMAGE_TAG} || set "TEST_EXIT=%ERRORLEVEL%"
+                    docker cp ${IMAGE_NAME}-${IMAGE_TAG}:/app/reports/junit.xml reports/junit.xml
+                    docker rm ${IMAGE_NAME}-${IMAGE_TAG}
+                    if not "%TEST_EXIT%"=="0" exit /b %TEST_EXIT%
                 """
             }
         }
@@ -50,6 +54,11 @@ pipeline {
             steps {
                 echo "Eliminando imagen temporal..."
                 bat "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || exit /b 0"
+            }
+            post {
+                always {
+                    bat "docker rm -f ${IMAGE_NAME}-${IMAGE_TAG} 2>nul || exit /b 0"
+                }
             }
         }
     }
