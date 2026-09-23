@@ -1,0 +1,17 @@
+{
+  "name": "jenkins-docker-qa-demo",
+  "version": "1.0.0",
+  "description": "Muestra de integración Jenkins + Docker para QA",
+  "main": "src/calculadora.js",
+  "scripts": {
+    "test": "jest --ci --reporters=default --reporters=jest-junit"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0"
+  },
+  "jest-junit": {
+    "outputDirectory": "reports",
+    "outputName": "junit.xml"
+  }
+}
