@@ -34,8 +34,7 @@ pipeline {
                 // fuera del contenedor una vez terminan las pruebas.
                 bat """
                     if not exist reports mkdir reports
-                    docker run --rm -v "%WORKSPACE%\\reports:/app/reports" \
-                        ${IMAGE_NAME}:${IMAGE_TAG}
+                    docker run --rm -v "%WORKSPACE%\\reports:/app/reports" ${IMAGE_NAME}:${IMAGE_TAG}
                 """
             }
         }
