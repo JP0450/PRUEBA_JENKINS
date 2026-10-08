@@ -7,7 +7,7 @@ describe("Calculadora - pruebas de QA", () => {
   });
 
   test("resta dos números correctamente", () => {
-    expect(restar(10, 4)).toBe(6);
+    expect(restar(10, 5)).toBe(6);
   });
 
   test("multiplica dos números correctamente", () => {
